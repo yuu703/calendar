@@ -335,7 +335,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: _calendarCarouselNoHeader,
               ),
 
-              new Divider(color: Colors.black),
+              new Divider(color: Colors.blue),
               Center(
                 child: Text(
                   '漢字テスト',
