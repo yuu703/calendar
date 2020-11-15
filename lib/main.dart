@@ -9,14 +9,8 @@ import 'package:intl/intl.dart' show DateFormat;
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
-
-
-
-
   @override
   Widget build(BuildContext context) {
-
-
     return new MaterialApp(
       title: 'dooboolab flutter calendar',
       theme: new ThemeData(
@@ -30,7 +24,7 @@ class MyApp extends StatelessWidget {
         // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(title: 'Flutter Calendar Carousel Example'),
+      home: new MyHomePage(title: 'カレンダー'),
     );
   }
 }
@@ -54,10 +48,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
-
-
   DateTime _currentDate = DateTime.now();
   DateTime _currentDate2 = DateTime.now();
   String _currentMonth = DateFormat.yMMM().format(DateTime(2019, 2, 3));
@@ -98,51 +88,47 @@ class _MyHomePageState extends State<MyHomePage> {
 //  );
 
   CalendarCarousel _calendarCarousel, _calendarCarouselNoHeader;
-   List list = [DateTime(2020,08,10) , DateTime(2020,08,10) ,  DateTime(2020,08,11) ,  DateTime(2020,08,10), DateTime(2020,08,10) , DateTime(2020,08,10) ,  DateTime(2020,08,10) ];
+  List list = [
+    DateTime(2020, 08, 10),
+    DateTime(2020, 08, 10),
+    DateTime(2020, 08, 11),
+    DateTime(2020, 08, 10),
+    DateTime(2020, 08, 10),
+    DateTime(2020, 08, 10),
+    DateTime(2020, 08, 10)
+  ];
   // This widget is the root of your application.
 
   List redundantList = [];
 
-
-
   EventList<Event> _markedDateMap = new EventList();
 
-  var count=0;
+  var count = 0;
 
-
-
-  
   @override
   void initState() {
-
-
-    for(DateTime e in list){
-      if(!redundantList.contains(e))
-        {
-          _markedDateMap.add(e , new Event(
-            date: e,
-            title: "event 1",
-            dot: Container(
-              padding: EdgeInsets.all(2),
-              margin: EdgeInsets.only(left:20),
-              alignment: Alignment.center,
+    for (DateTime e in list) {
+      if (!redundantList.contains(e)) {
+        _markedDateMap.add(
+            e,
+            new Event(
+              date: e,
+              title: "event 1",
+              dot: Container(
+                padding: EdgeInsets.all(2),
+                margin: EdgeInsets.only(left: 20),
+                alignment: Alignment.center,
 //              child: Text("7" , style: TextStyle(color: Colors.white),),
-              height: 15.0,
-              width: 15.0,
-              decoration: BoxDecoration(
-                  color: Colors.red,
-                  shape: BoxShape.circle
+                height: 15.0,
+                width: 15.0,
+                decoration:
+                    BoxDecoration(color: Colors.red, shape: BoxShape.circle),
               ),
-            ),
-          ));
+            ));
 
-          redundantList.add(e);
-
-        }
-
+        redundantList.add(e);
+      }
     }
-
-
 
     /// Add more events to _markedDateMap EventList
 //    _markedDateMap.add(
@@ -226,9 +212,6 @@ class _MyHomePageState extends State<MyHomePage> {
 //    /// Example Calendar Carousel without header and custom prev & next button
 //
 
-
-
-
     _calendarCarouselNoHeader = CalendarCarousel<Event>(
       todayBorderColor: Colors.green,
       onDayPressed: (DateTime date, List<Event> events) {
@@ -248,9 +231,8 @@ class _MyHomePageState extends State<MyHomePage> {
       selectedDateTime: _currentDate2,
       targetDateTime: _targetDateTime,
       customGridViewPhysics: NeverScrollableScrollPhysics(),
-      markedDateCustomShapeBorder: CircleBorder(
-          side: BorderSide(color: Colors.yellow)
-      ),
+      markedDateCustomShapeBorder:
+          CircleBorder(side: BorderSide(color: Colors.yellow)),
       markedDateCustomTextStyle: TextStyle(
         fontSize: 18,
         color: Colors.blue,
@@ -317,18 +299,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     Expanded(
                         child: Text(
-                          _currentMonth,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24.0,
-                          ),
-                        )),
+                      _currentMonth,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.0,
+                      ),
+                    )),
                     FlatButton(
                       child: Text('PREV'),
                       onPressed: () {
                         setState(() {
-                          _targetDateTime = DateTime(_targetDateTime.year, _targetDateTime.month -1);
-                          _currentMonth = DateFormat.yMMM().format(_targetDateTime);
+                          _targetDateTime = DateTime(
+                              _targetDateTime.year, _targetDateTime.month - 1);
+                          _currentMonth =
+                              DateFormat.yMMM().format(_targetDateTime);
                         });
                       },
                     ),
@@ -336,8 +320,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text('NEXT'),
                       onPressed: () {
                         setState(() {
-                          _targetDateTime = DateTime(_targetDateTime.year, _targetDateTime.month +1);
-                          _currentMonth = DateFormat.yMMM().format(_targetDateTime);
+                          _targetDateTime = DateTime(
+                              _targetDateTime.year, _targetDateTime.month + 1);
+                          _currentMonth =
+                              DateFormat.yMMM().format(_targetDateTime);
                         });
                       },
                     )
@@ -347,7 +333,28 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16.0),
                 child: _calendarCarouselNoHeader,
-              ), //
+              ),
+
+              new Divider(color: Colors.black),
+              Center(
+                child: Text(
+                  '漢字テスト',
+                  style: TextStyle(
+                    color: Colors.teal.shade900,
+                    fontSize: 15.0,
+                  ),
+                ),
+              ),
+              new Divider(color: Colors.black),
+              Center(
+                child: Text(
+                  '数学テスト',
+                  style: TextStyle(
+                    color: Colors.teal.shade900,
+                    fontSize: 15.0,
+                  ),
+                ),
+              ),
             ],
           ),
         ));
